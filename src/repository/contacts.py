@@ -11,6 +11,19 @@ from src.schemas import ContactRequest
 async def get_contacts(
     offset: int, limit: int, user: User, db: Session
 ) -> List[Contact]:
+    """
+    Retrieves a list of contacts for a given user.
+
+    Args:
+        offset (int): The number of contacts to skip.
+        limit (int): The maximum number of contacts to retrieve.
+        user (User): The user object.
+        db (Session): The database session.
+
+    Returns:
+        List[Contact]: A list of contacts.
+
+    """
     return (
         db.query(Contact)
         .filter(Contact.user_id == user.id)
@@ -21,6 +34,18 @@ async def get_contacts(
 
 
 async def get_contact(contact_id: int, user: User, db: Session) -> Contact:
+    """
+    Retrieves a single contact for a given user.
+
+    Args:
+        contact_id (int): The ID of the contact.
+        user (User): The user object.
+        db (Session): The database session.
+
+    Returns:
+        Contact: The contact object.
+
+    """
     return (
         db.query(Contact)
         .filter(Contact.user_id == user.id)
@@ -30,6 +55,18 @@ async def get_contact(contact_id: int, user: User, db: Session) -> Contact:
 
 
 async def create_contact(body: ContactRequest, user: User, db: Session) -> Contact:
+    """
+    Creates a new contact for a given user.
+
+    Args:
+        body (ContactRequest): The contact data.
+        user (User): The user object.
+        db (Session): The database session.
+
+    Returns:
+        Contact: The created contact object.
+
+    """
     contact = Contact(
         first_name=body.first_name,
         last_name=body.last_name,
@@ -47,6 +84,19 @@ async def create_contact(body: ContactRequest, user: User, db: Session) -> Conta
 async def update_contact(
     contact_id: int, body: ContactRequest, user: User, db: Session
 ) -> Contact | None:
+    """
+    Updates an existing contact for a given user.
+
+    Args:
+        contact_id (int): The ID of the contact.
+        body (ContactRequest): The updated contact data.
+        user (User): The user object.
+        db (Session): The database session.
+
+    Returns:
+        Contact | None: The updated contact object, or None if the contact does not exist.
+
+    """
     contact = (
         db.query(Contact)
         .filter(and_(Contact.id == contact_id, Contact.user_id == user.id))
@@ -63,6 +113,18 @@ async def update_contact(
 
 
 async def remove_contact(contact_id: int, user: User, db: Session) -> Contact | None:
+    """
+    Removes a contact for a given user.
+
+    Args:
+        contact_id (int): The ID of the contact.
+        user (User): The user object.
+        db (Session): The database session.
+
+    Returns:
+        Contact | None: The removed contact object, or None if the contact does not exist.
+
+    """
     contact = (
         db.query(Contact)
         .filter(and_(Contact.id == contact_id, Contact.user_id == user.id))
@@ -77,6 +139,20 @@ async def remove_contact(contact_id: int, user: User, db: Session) -> Contact | 
 async def search_contacts(
     query: str, offset: int, limit: int, user: User, db: Session
 ) -> List[Contact] | None:
+    """
+    Searches for contacts matching a given query for a given user.
+
+    Args:
+        query (str): The search query.
+        offset (int): The number of contacts to skip.
+        limit (int): The maximum number of contacts to retrieve.
+        user (User): The user object.
+        db (Session): The database session.
+
+    Returns:
+        List[Contact] | None: A list of matching contacts, or None if no contacts are found.
+
+    """
     contacts = (
         db.query(Contact)
         .filter(
@@ -99,6 +175,19 @@ async def search_contacts(
 async def find_contacts_by_birthday(
     offset: int, limit: int, user: User, db: Session
 ) -> List[Contact] | None:
+    """
+    Retrieves contacts with upcoming birthdays for a given user.
+
+    Args:
+        offset (int): The number of contacts to skip.
+        limit (int): The maximum number of contacts to retrieve.
+        user (User): The user object.
+        db (Session): The database session.
+
+    Returns:
+        List[Contact] | None: A list of contacts with upcoming birthdays, or None if no contacts are found.
+
+    """
     today = date.today()
     next_week = today + timedelta(days=7)
 

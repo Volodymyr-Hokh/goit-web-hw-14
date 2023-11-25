@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "goit-web-hw-13"
+name = "goit-web-hw-14"
 version = "0.1.0"
 description = ""
 authors = ["Volodymyr-Hokh <132125735+Volodymyr-Hokh@users.noreply.github.com>"]
@@ -23,6 +23,9 @@ cloudinary = "^1.36.0"
 redis = "^5.0.1"
 psycopg2-binary = "^2.9.9"
 
+
+[tool.poetry.group.dev.dependencies]
+sphinx = "^7.2.6"
 
 [build-system]
 requires = ["poetry-core"]
