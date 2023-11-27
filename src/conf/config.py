@@ -2,19 +2,19 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    sqlalchemy_database_url: str
-    secret_key: str
-    algorithm: str
-    mail_username: str
-    mail_password: str
-    mail_from: str
-    mail_port: int
-    mail_server: str
-    redis_host: str = "localhost"
+    sqlalchemy_database_url: str = "postgresql+psycopg2://mock:mock@mock:1234/mock"
+    secret_key: str = "mock"
+    algorithm: str = "mock"
+    mail_username: str = "mock12345@example.com"
+    mail_password: str = "mock"
+    mail_from: str = "mock12345@example.com"
+    mail_port: int = 465
+    mail_server: str = "mock"
+    redis_host: str = "mock"
     redis_port: int = 6379
-    cloudinary_name: str
-    cloudinary_api_key: str
-    cloudinary_api_secret: str
+    cloudinary_name: str = "mock"
+    cloudinary_api_key: str = "mock"
+    cloudinary_api_secret: str = "mock"
 
     class Config:
         env_file = ".env"
