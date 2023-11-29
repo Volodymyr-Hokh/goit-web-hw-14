@@ -1,7 +1,7 @@
 from datetime import date, datetime
 from typing import Optional
 
-from pydantic import BaseModel, Field, EmailStr
+from pydantic import BaseModel, Field, EmailStr, ConfigDict
 
 
 class ContactRequest(BaseModel):
@@ -14,9 +14,7 @@ class ContactRequest(BaseModel):
 
 class ContactResponse(ContactRequest):
     id: int
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UserModel(BaseModel):
@@ -31,9 +29,7 @@ class UserDb(BaseModel):
     email: EmailStr
     created_at: datetime
     avatar: str
-
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UserResponse(BaseModel):

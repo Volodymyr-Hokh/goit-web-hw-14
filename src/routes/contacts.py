@@ -14,7 +14,7 @@ router = APIRouter(prefix="/contacts", tags=["contacts"])
 
 
 @router.get("/", response_model=List[ContactResponse])
-@limiter.limit(limit_value="2/5seconds")
+@limiter.limit(limit_value="10/minute")
 async def read_contacts(
     request: Request,
     offset: int = 0,
@@ -40,7 +40,7 @@ async def read_contacts(
 
 
 @router.get("/search", response_model=List[ContactResponse])
-@limiter.limit(limit_value="2/5seconds")
+@limiter.limit(limit_value="10/minute")
 async def search_contacts(
     request: Request,
     query: str,
@@ -70,7 +70,7 @@ async def search_contacts(
 
 
 @router.get("/birthday", response_model=List[ContactResponse])
-@limiter.limit(limit_value="2/5seconds")
+@limiter.limit(limit_value="10/minute")
 async def find_birthdays(
     request: Request,
     offset: int = 0,
@@ -98,7 +98,7 @@ async def find_birthdays(
 
 
 @router.get("/{contact_id}", response_model=ContactResponse)
-@limiter.limit(limit_value="2/5seconds")
+@limiter.limit(limit_value="10/minute")
 async def read_contact(
     request: Request,
     contact_id: int,
