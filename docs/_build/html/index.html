@@ -144,6 +144,15 @@
 </section>
 <section id="module-main">
 <span id="rest-api-main"></span><h1>REST API main<a class="headerlink" href="#module-main" title="Link to this heading"></a></h1>
+<p>This is the main file of the application.
+It sets up the FastAPI application, adds middleware, and includes routers for different endpoints.</p>
+<p>The routers included are:
+- contacts.router: Handles API endpoints related to contacts.
+- auth.router: Handles API endpoints related to authentication.
+- users.router: Handles API endpoints related to users.</p>
+<p>The application also handles rate limiting using the limiter defined in src.limiter module.</p>
+<p>The CORS middleware is added to allow requests from the specified origin.</p>
+<p>Note: This file should be run to start the application.</p>
 </section>
 <section id="module-src.repository.contacts">
 <span id="rest-api-repository-contacts"></span><h1>REST API repository Contacts<a class="headerlink" href="#module-src.repository.contacts" title="Link to this heading"></a></h1>
@@ -151,10 +160,10 @@
 <dt class="sig sig-object py" id="src.repository.contacts.create_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">create_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ContactRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Contact</span></span></span><a class="headerlink" href="#src.repository.contacts.create_contact" title="Link to this definition"></a></dt>
 <dd><p>Creates a new contact for a given user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>body (ContactRequest): The contact data.
-user (User): The user object.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>body (ContactRequest): The contact data.</p>
+<p>user (User): The user object.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>Contact: The created contact object.</p>
 </dd>
@@ -165,11 +174,11 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.find_contacts_by_birthday">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">find_contacts_by_birthday</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Contact</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#src.repository.contacts.find_contacts_by_birthday" title="Link to this definition"></a></dt>
 <dd><p>Retrieves contacts with upcoming birthdays for a given user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>offset (int): The number of contacts to skip.
-limit (int): The maximum number of contacts to retrieve.
-user (User): The user object.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>offset (int): The number of contacts to skip.</p>
+<p>limit (int): The maximum number of contacts to retrieve.</p>
+<p>user (User): The user object.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>List[Contact] | None: A list of contacts with upcoming birthdays, or None if no contacts are found.</p>
 </dd>
@@ -180,10 +189,10 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.get_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Contact</span></span></span><a class="headerlink" href="#src.repository.contacts.get_contact" title="Link to this definition"></a></dt>
 <dd><p>Retrieves a single contact for a given user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>contact_id (int): The ID of the contact.
-user (User): The user object.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>contact_id (int): The ID of the contact.</p>
+<p>user (User): The user object.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>Contact: The contact object.</p>
 </dd>
@@ -194,11 +203,11 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.get_contacts">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">get_contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Contact</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#src.repository.contacts.get_contacts" title="Link to this definition"></a></dt>
 <dd><p>Retrieves a list of contacts for a given user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>offset (int): The number of contacts to skip.
-limit (int): The maximum number of contacts to retrieve.
-user (User): The user object.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>offset (int): The number of contacts to skip.</p>
+<p>limit (int): The maximum number of contacts to retrieve.</p>
+<p>user (User): The user object.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>List[Contact]: A list of contacts.</p>
 </dd>
@@ -209,10 +218,10 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.remove_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">remove_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Contact</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#src.repository.contacts.remove_contact" title="Link to this definition"></a></dt>
 <dd><p>Removes a contact for a given user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>contact_id (int): The ID of the contact.
-user (User): The user object.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>contact_id (int): The ID of the contact.</p>
+<p>user (User): The user object.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>Contact | None: The removed contact object, or None if the contact does not exist.</p>
 </dd>
@@ -223,12 +232,12 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.search_contacts">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">search_contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Contact</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#src.repository.contacts.search_contacts" title="Link to this definition"></a></dt>
 <dd><p>Searches for contacts matching a given query for a given user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>query (str): The search query.
-offset (int): The number of contacts to skip.
-limit (int): The maximum number of contacts to retrieve.
-user (User): The user object.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>query (str): The search query.</p>
+<p>offset (int): The number of contacts to skip.</p>
+<p>limit (int): The maximum number of contacts to retrieve.</p>
+<p>user (User): The user object.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>List[Contact] | None: A list of matching contacts, or None if no contacts are found.</p>
 </dd>
@@ -239,11 +248,11 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.contacts.update_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.contacts.</span></span><span class="sig-name descname"><span class="pre">update_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ContactRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Contact</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#src.repository.contacts.update_contact" title="Link to this definition"></a></dt>
 <dd><p>Updates an existing contact for a given user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>contact_id (int): The ID of the contact.
-body (ContactRequest): The updated contact data.
-user (User): The user object.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>contact_id (int): The ID of the contact.</p>
+<p>body (ContactRequest): The updated contact data.</p>
+<p>user (User): The user object.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>Contact | None: The updated contact object, or None if the contact does not exist.</p>
 </dd>
@@ -257,9 +266,9 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.users.confirmed_email">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">confirmed_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#src.repository.users.confirmed_email" title="Link to this definition"></a></dt>
 <dd><p>Confirms the email of a user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>email (str): The email of the user.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>email (str): The email of the user.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>None</p>
 </dd>
@@ -270,9 +279,9 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.users.create_user">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">create_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UserModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">User</span></span></span><a class="headerlink" href="#src.repository.users.create_user" title="Link to this definition"></a></dt>
 <dd><p>Creates a new user in the database.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>body (UserModel): The user data.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>body (UserModel): The user data.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>User: The newly created user object.</p>
 </dd>
@@ -283,9 +292,9 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.users.get_user_by_email">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">get_user_by_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">User</span></span></span><a class="headerlink" href="#src.repository.users.get_user_by_email" title="Link to this definition"></a></dt>
 <dd><p>Retrieves a user from the database based on their email.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>email (str): The email of the user.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>email (str): The email of the user.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>User: The user object.</p>
 </dd>
@@ -296,10 +305,10 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.users.update_avatar">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">update_avatar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">User</span></span></span><a class="headerlink" href="#src.repository.users.update_avatar" title="Link to this definition"></a></dt>
 <dd><p>Updates the avatar of a user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>email: The email of the user.
-url (str): The URL of the new avatar.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>email: The email of the user.</p>
+<p>url (str): The URL of the new avatar.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>User: The updated user object.</p>
 </dd>
@@ -310,10 +319,10 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.users.update_password">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">update_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UserModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_hash_password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.repository.users.update_password" title="Link to this definition"></a></dt>
 <dd><p>Updates the password of a user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>user (UserModel): The user object.
-new_hash_password (str): The new hashed password.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>user (UserModel): The user object.</p>
+<p>new_hash_password (str): The new hashed password.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>User: The updated user object.</p>
 </dd>
@@ -324,10 +333,10 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.repository.users.update_token">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.repository.users.</span></span><span class="sig-name descname"><span class="pre">update_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#src.repository.users.update_token" title="Link to this definition"></a></dt>
 <dd><p>Updates the refresh token of a user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>user (User): The user object.
-token (str | None): The new refresh token.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>user (User): The user object.</p>
+<p>token (str | None): The new refresh token.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>None</p>
 </dd>
@@ -341,11 +350,11 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.routes.contacts.create_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">create_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ContactRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.create_contact" title="Link to this definition"></a></dt>
 <dd><p>Create a new contact.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): The incoming request.
-body (ContactRequest): The contact data.
-current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-db (Session, optional): The database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): The incoming request.</p>
+<p>body (ContactRequest): The contact data.</p>
+<p>current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).</p>
+<p>db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>ContactResponse: The created contact.</p>
 </dd>
@@ -356,12 +365,12 @@ db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.contacts.find_birthdays">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">find_birthdays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.find_birthdays" title="Link to this definition"></a></dt>
 <dd><p>Get a list of contacts with upcoming birthdays.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): The incoming request.
-offset (int, optional): The offset for pagination. Defaults to 0.
-limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.
-current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-db (Session, optional): The database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): The incoming request.</p>
+<p>offset (int, optional): The offset for pagination. Defaults to 0.</p>
+<p>limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.</p>
+<p>current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).</p>
+<p>db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>List[ContactResponse]: A list of contacts with upcoming birthdays.</p>
 </dd>
@@ -372,11 +381,11 @@ db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.contacts.read_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">read_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.read_contact" title="Link to this definition"></a></dt>
 <dd><p>Get a contact by ID.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): The incoming request.
-contact_id (int): The ID of the contact.
-current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-db (Session, optional): The database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): The incoming request.</p>
+<p>contact_id (int): The ID of the contact.</p>
+<p>current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).</p>
+<p>db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>ContactResponse: The contact with the specified ID.</p>
 </dd>
@@ -387,14 +396,14 @@ db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="src.routes.contacts.read_contacts">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">read_contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.read_contacts" title="Link to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">read_contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.read_contacts" title="Link to this definition"></a></dt>
 <dd><p>Get a list of contacts.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): The incoming request.
-offset (int, optional): The offset for pagination. Defaults to 0.
-limit (int, optional): The maximum number of contacts to retrieve. Defaults to 100.
-db (Session, optional): The database session. Defaults to Depends(get_db).
-current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): The incoming request.</p>
+<p>offset (int, optional): The offset for pagination. Defaults to 0.</p>
+<p>limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.</p>
+<p>db (Session, optional): The database session. Defaults to Depends(get_db).</p>
+<p>current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).</p>
 </dd>
 <dt>Returns:</dt><dd><p>List[ContactResponse]: A list of contacts.</p>
 </dd>
@@ -405,11 +414,11 @@ current_user (User, optional): The current authenticated user. Defaults to Depen
 <dt class="sig sig-object py" id="src.routes.contacts.remove_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">remove_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.remove_contact" title="Link to this definition"></a></dt>
 <dd><p>Remove a contact.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): The incoming request.
-contact_id (int): The ID of the contact to remove.
-current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-db (Session, optional): The database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): The incoming request.</p>
+<p>contact_id (int): The ID of the contact to remove.</p>
+<p>current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).</p>
+<p>db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>ContactResponse: The removed contact.</p>
 </dd>
@@ -422,13 +431,13 @@ db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.contacts.search_contacts">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">search_contacts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.search_contacts" title="Link to this definition"></a></dt>
 <dd><p>Search for contacts based on a query.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): The incoming request.
-query (str): The search query.
-offset (int, optional): The offset for pagination. Defaults to 0.
-limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.
-current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-db (Session, optional): The database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): The incoming request.</p>
+<p>query (str): The search query.</p>
+<p>offset (int, optional): The offset for pagination. Defaults to 0.</p>
+<p>limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.</p>
+<p>current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).</p>
+<p>db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>List[ContactResponse]: A list of contacts matching the search query.</p>
 </dd>
@@ -439,12 +448,12 @@ db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.contacts.update_contact">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.contacts.</span></span><span class="sig-name descname"><span class="pre">update_contact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ContactRequest</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.contacts.update_contact" title="Link to this definition"></a></dt>
 <dd><p>Update an existing contact.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): The incoming request.
-body (ContactRequest): The updated contact data.
-contact_id (int): The ID of the contact to update.
-current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-db (Session, optional): The database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): The incoming request.</p>
+<p>body (ContactRequest): The updated contact data.</p>
+<p>contact_id (int): The ID of the contact to update.</p>
+<p>current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).</p>
+<p>db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>ContactResponse: The updated contact.</p>
 </dd>
@@ -472,10 +481,10 @@ db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.users.update_avatar_user">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.users.</span></span><span class="sig-name descname"><span class="pre">update_avatar_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UploadFile</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">File(PydanticUndefined)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.users.update_avatar_user" title="Link to this definition"></a></dt>
 <dd><p>Update the avatar of the currently authenticated user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>file (UploadFile): The new avatar file to be uploaded.
-current_user (User): The currently authenticated user.
-db (Session): The database session.</p>
+<dl>
+<dt>Args:</dt><dd><p>file (UploadFile): The new avatar file to be uploaded.</p>
+<p>current_user (User): The currently authenticated user.</p>
+<p>db (Session): The database session.</p>
 </dd>
 <dt>Returns:</dt><dd><p>UserDb: The updated details of the currently authenticated user.</p>
 </dd>
@@ -489,10 +498,10 @@ db (Session): The database session.</p>
 <dt class="sig sig-object py" id="src.routes.auth.confirmed_email">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">confirmed_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.confirmed_email" title="Link to this definition"></a></dt>
 <dd><p>Confirmed email endpoint.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): Request object.
-token (str): Token for email confirmation.
-db (Session, optional): Database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): Request object.</p>
+<p>token (str): Token for email confirmation.</p>
+<p>db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>dict: Confirmation message.</p>
 </dd>
@@ -503,10 +512,10 @@ db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.auth.login">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OAuth2PasswordRequestForm</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(OAuth2PasswordRequestForm)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.login" title="Link to this definition"></a></dt>
 <dd><p>Log in a user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): Request object.
-body (OAuth2PasswordRequestForm, optional): Password request form. Defaults to Depends().
-db (Session, optional): Database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): Request object.</p>
+<p>body (OAuth2PasswordRequestForm, optional): Password request form. Defaults to Depends().</p>
+<p>db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>dict: Token response.</p>
 </dd>
@@ -517,10 +526,10 @@ db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.auth.refresh_token">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HTTPAuthorizationCredentials</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Security(HTTPBearer)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.refresh_token" title="Link to this definition"></a></dt>
 <dd><p>Refresh the access token.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>request (Request): Request object.
-credentials (HTTPAuthorizationCredentials, optional): Authorization credentials. Defaults to Security(security).
-db (Session, optional): Database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>request (Request): Request object.</p>
+<p>credentials (HTTPAuthorizationCredentials, optional): Authorization credentials. Defaults to Security(security).</p>
+<p>db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>dict: Token response.</p>
 </dd>
@@ -531,11 +540,11 @@ db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.auth.request_email">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">request_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">RequestEmail</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BackgroundTasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.request_email" title="Link to this definition"></a></dt>
 <dd><p>Request email endpoint.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>body (RequestEmail): Request email body.
-background_tasks (BackgroundTasks): Background tasks.
-request (Request): Request object.
-db (Session, optional): Database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>body (RequestEmail): Request email body.</p>
+<p>background_tasks (BackgroundTasks): Background tasks.</p>
+<p>request (Request): Request object.</p>
+<p>db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>None</p>
 </dd>
@@ -546,11 +555,11 @@ db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.auth.signup">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">signup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UserModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BackgroundTasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.signup" title="Link to this definition"></a></dt>
 <dd><p>Sign up a new user.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>body (UserModel): User data.
-background_tasks (BackgroundTasks): Background tasks.
-request (Request): Request object.
-db (Session, optional): Database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>body (UserModel): User data.</p>
+<p>background_tasks (BackgroundTasks): Background tasks.</p>
+<p>request (Request): Request object.</p>
+<p>db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>dict: User response.</p>
 </dd>
@@ -561,11 +570,11 @@ db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.routes.auth.update_password">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.routes.auth.</span></span><span class="sig-name descname"><span class="pre">update_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">UpdatePassword</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">User</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.routes.auth.update_password" title="Link to this definition"></a></dt>
 <dd><p>Update password endpoint.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>body (UpdatePassword): Update password body.
-background_tasks (BackgroundTasks): Background tasks.
-request (Request): Request object.
-db (Session, optional): Database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>body (UpdatePassword): Update password body.</p>
+<p>background_tasks (BackgroundTasks): Background tasks.</p>
+<p>request (Request): Request object.</p>
+<p>db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>None</p>
 </dd>
@@ -594,9 +603,9 @@ db (Session, optional): Database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.services.auth.Auth.create_access_token">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expires_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.create_access_token" title="Link to this definition"></a></dt>
 <dd><p>Create an access token.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>data (dict): The data to encode in the token.
-expires_delta (float, optional): The expiration time in seconds. Defaults to None.</p>
+<dl>
+<dt>Args:</dt><dd><p>data (dict): The data to encode in the token.</p>
+<p>expires_delta (float, optional): The expiration time in seconds. Defaults to None.</p>
 </dd>
 <dt>Returns:</dt><dd><p>str: The encoded access token.</p>
 </dd>
@@ -619,9 +628,9 @@ expires_delta (float, optional): The expiration time in seconds. Defaults to Non
 <dt class="sig sig-object py" id="src.services.auth.Auth.create_refresh_token">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expires_delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.create_refresh_token" title="Link to this definition"></a></dt>
 <dd><p>Create a refresh token.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>data (dict): The data to encode in the token.
-expires_delta (float, optional): The expiration time in seconds. Defaults to None.</p>
+<dl>
+<dt>Args:</dt><dd><p>data (dict): The data to encode in the token.</p>
+<p>expires_delta (float, optional): The expiration time in seconds. Defaults to None.</p>
 </dd>
 <dt>Returns:</dt><dd><p>str: The encoded refresh token.</p>
 </dd>
@@ -646,9 +655,9 @@ expires_delta (float, optional): The expiration time in seconds. Defaults to Non
 <dt class="sig sig-object py" id="src.services.auth.Auth.get_current_user">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(OAuth2PasswordBearer)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Session</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.get_current_user" title="Link to this definition"></a></dt>
 <dd><p>Get the current user based on the access token.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>token (str, optional): The access token. Defaults to Depends(oauth2_scheme).
-db (Session, optional): The database session. Defaults to Depends(get_db).</p>
+<dl>
+<dt>Args:</dt><dd><p>token (str, optional): The access token. Defaults to Depends(oauth2_scheme).</p>
+<p>db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 </dd>
 <dt>Returns:</dt><dd><p>User: The current user.</p>
 </dd>
@@ -702,9 +711,9 @@ db (Session, optional): The database session. Defaults to Depends(get_db).</p>
 <dt class="sig sig-object py" id="src.services.auth.Auth.verify_password">
 <span class="sig-name descname"><span class="pre">verify_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plain_password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hashed_password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.auth.Auth.verify_password" title="Link to this definition"></a></dt>
 <dd><p>Verify if the plain password matches the hashed password.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>plain_password (str): The plain password to verify.
-hashed_password (str): The hashed password to compare against.</p>
+<dl>
+<dt>Args:</dt><dd><p>plain_password (str): The plain password to verify.</p>
+<p>hashed_password (str): The hashed password to compare against.</p>
 </dd>
 <dt>Returns:</dt><dd><p>bool: True if the passwords match, False otherwise.</p>
 </dd>
@@ -720,10 +729,10 @@ hashed_password (str): The hashed password to compare against.</p>
 <dt class="sig sig-object py" id="src.services.email.send_email">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.services.email.</span></span><span class="sig-name descname"><span class="pre">send_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EmailStr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.services.email.send_email" title="Link to this definition"></a></dt>
 <dd><p>Sends an email to the specified recipient with a confirmation link.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>email (EmailStr): The email address of the recipient.
-username (str): The username of the recipient.
-host (str): The host URL where the confirmation link will be directed.</p>
+<dl>
+<dt>Args:</dt><dd><p>email (EmailStr): The email address of the recipient.</p>
+<p>username (str): The username of the recipient.</p>
+<p>host (str): The host URL where the confirmation link will be directed.</p>
 </dd>
 <dt>Raises:</dt><dd><p>ConnectionErrors: If there is an error connecting to the email server.</p>
 </dd>

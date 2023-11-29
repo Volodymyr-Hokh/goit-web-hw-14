@@ -44,10 +44,10 @@ async def signup(
     Sign up a new user.
 
     Args:
-        body (UserModel): User data.
-        background_tasks (BackgroundTasks): Background tasks.
-        request (Request): Request object.
-        db (Session, optional): Database session. Defaults to Depends(get_db).
+        body (UserModel): User data.\n
+        background_tasks (BackgroundTasks): Background tasks.\n
+        request (Request): Request object.\n
+        db (Session, optional): Database session. Defaults to Depends(get_db).\n
 
     Returns:
         dict: User response.
@@ -78,9 +78,9 @@ async def login(
     Log in a user.
 
     Args:
-        request (Request): Request object.
-        body (OAuth2PasswordRequestForm, optional): Password request form. Defaults to Depends().
-        db (Session, optional): Database session. Defaults to Depends(get_db).
+        request (Request): Request object.\n
+        body (OAuth2PasswordRequestForm, optional): Password request form. Defaults to Depends().\n
+        db (Session, optional): Database session. Defaults to Depends(get_db).\n
 
     Returns:
         dict: Token response.
@@ -118,9 +118,9 @@ async def refresh_token(
     Refresh the access token.
 
     Args:
-        request (Request): Request object.
-        credentials (HTTPAuthorizationCredentials, optional): Authorization credentials. Defaults to Security(security).
-        db (Session, optional): Database session. Defaults to Depends(get_db).
+        request (Request): Request object.\n
+        credentials (HTTPAuthorizationCredentials, optional): Authorization credentials. Defaults to Security(security).\n
+        db (Session, optional): Database session. Defaults to Depends(get_db).\n
 
     Returns:
         dict: Token response.
@@ -150,9 +150,9 @@ async def confirmed_email(request: Request, token: str, db: Session = Depends(ge
     Confirmed email endpoint.
 
     Args:
-        request (Request): Request object.
-        token (str): Token for email confirmation.
-        db (Session, optional): Database session. Defaults to Depends(get_db).
+        request (Request): Request object.\n
+        token (str): Token for email confirmation.\n
+        db (Session, optional): Database session. Defaults to Depends(get_db).\n
 
     Returns:
         dict: Confirmation message.
@@ -180,10 +180,10 @@ async def request_email(
     Request email endpoint.
 
     Args:
-        body (RequestEmail): Request email body.
-        background_tasks (BackgroundTasks): Background tasks.
-        request (Request): Request object.
-        db (Session, optional): Database session. Defaults to Depends(get_db).
+        body (RequestEmail): Request email body.\n
+        background_tasks (BackgroundTasks): Background tasks.\n
+        request (Request): Request object.\n
+        db (Session, optional): Database session. Defaults to Depends(get_db).\n
 
     Returns:
         None
@@ -209,10 +209,10 @@ async def update_password(
     Update password endpoint.
 
     Args:
-        body (UpdatePassword): Update password body.
-        background_tasks (BackgroundTasks): Background tasks.
-        request (Request): Request object.
-        db (Session, optional): Database session. Defaults to Depends(get_db).
+        body (UpdatePassword): Update password body.\n
+        background_tasks (BackgroundTasks): Background tasks.\n
+        request (Request): Request object.\n
+        db (Session, optional): Database session. Defaults to Depends(get_db).\n
 
     Returns:
         None

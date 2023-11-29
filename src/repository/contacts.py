@@ -15,10 +15,10 @@ async def get_contacts(
     Retrieves a list of contacts for a given user.
 
     Args:
-        offset (int): The number of contacts to skip.
-        limit (int): The maximum number of contacts to retrieve.
-        user (User): The user object.
-        db (Session): The database session.
+        offset (int): The number of contacts to skip.\n
+        limit (int): The maximum number of contacts to retrieve.\n
+        user (User): The user object.\n
+        db (Session): The database session.\n
 
     Returns:
         List[Contact]: A list of contacts.
@@ -38,9 +38,9 @@ async def get_contact(contact_id: int, user: User, db: Session) -> Contact:
     Retrieves a single contact for a given user.
 
     Args:
-        contact_id (int): The ID of the contact.
-        user (User): The user object.
-        db (Session): The database session.
+        contact_id (int): The ID of the contact.\n
+        user (User): The user object.\n
+        db (Session): The database session.\n
 
     Returns:
         Contact: The contact object.
@@ -59,9 +59,9 @@ async def create_contact(body: ContactRequest, user: User, db: Session) -> Conta
     Creates a new contact for a given user.
 
     Args:
-        body (ContactRequest): The contact data.
-        user (User): The user object.
-        db (Session): The database session.
+        body (ContactRequest): The contact data.\n
+        user (User): The user object.\n
+        db (Session): The database session.\n
 
     Returns:
         Contact: The created contact object.
@@ -88,10 +88,10 @@ async def update_contact(
     Updates an existing contact for a given user.
 
     Args:
-        contact_id (int): The ID of the contact.
-        body (ContactRequest): The updated contact data.
-        user (User): The user object.
-        db (Session): The database session.
+        contact_id (int): The ID of the contact.\n
+        body (ContactRequest): The updated contact data.\n
+        user (User): The user object.\n
+        db (Session): The database session.\n
 
     Returns:
         Contact | None: The updated contact object, or None if the contact does not exist.
@@ -117,9 +117,9 @@ async def remove_contact(contact_id: int, user: User, db: Session) -> Contact | 
     Removes a contact for a given user.
 
     Args:
-        contact_id (int): The ID of the contact.
-        user (User): The user object.
-        db (Session): The database session.
+        contact_id (int): The ID of the contact.\n
+        user (User): The user object.\n
+        db (Session): The database session.\n
 
     Returns:
         Contact | None: The removed contact object, or None if the contact does not exist.
@@ -143,11 +143,11 @@ async def search_contacts(
     Searches for contacts matching a given query for a given user.
 
     Args:
-        query (str): The search query.
-        offset (int): The number of contacts to skip.
-        limit (int): The maximum number of contacts to retrieve.
-        user (User): The user object.
-        db (Session): The database session.
+        query (str): The search query.\n
+        offset (int): The number of contacts to skip.\n
+        limit (int): The maximum number of contacts to retrieve.\n
+        user (User): The user object.\n
+        db (Session): The database session.\n
 
     Returns:
         List[Contact] | None: A list of matching contacts, or None if no contacts are found.
@@ -179,10 +179,10 @@ async def find_contacts_by_birthday(
     Retrieves contacts with upcoming birthdays for a given user.
 
     Args:
-        offset (int): The number of contacts to skip.
-        limit (int): The maximum number of contacts to retrieve.
-        user (User): The user object.
-        db (Session): The database session.
+        offset (int): The number of contacts to skip.\n
+        limit (int): The maximum number of contacts to retrieve.\n
+        user (User): The user object.\n
+        db (Session): The database session.\n
 
     Returns:
         List[Contact] | None: A list of contacts with upcoming birthdays, or None if no contacts are found.

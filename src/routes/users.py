@@ -37,9 +37,9 @@ async def update_avatar_user(
     Update the avatar of the currently authenticated user.
 
     Args:
-        file (UploadFile): The new avatar file to be uploaded.
-        current_user (User): The currently authenticated user.
-        db (Session): The database session.
+        file (UploadFile): The new avatar file to be uploaded.\n
+        current_user (User): The currently authenticated user.\n
+        db (Session): The database session.\n
 
     Returns:
         UserDb: The updated details of the currently authenticated user.

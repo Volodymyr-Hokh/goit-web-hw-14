@@ -10,8 +10,8 @@ async def get_user_by_email(email: str, db: Session) -> User:
     Retrieves a user from the database based on their email.
 
     Args:
-        email (str): The email of the user.
-        db (Session): The database session.
+        email (str): The email of the user.\n
+        db (Session): The database session.\n\n
 
     Returns:
         User: The user object.
@@ -25,8 +25,8 @@ async def create_user(body: UserModel, db: Session) -> User:
     Creates a new user in the database.
 
     Args:
-        body (UserModel): The user data.
-        db (Session): The database session.
+        body (UserModel): The user data.\n
+        db (Session): The database session.\n
 
     Returns:
         User: The newly created user object.
@@ -50,9 +50,9 @@ async def update_token(user: User, token: str | None, db: Session) -> None:
     Updates the refresh token of a user.
 
     Args:
-        user (User): The user object.
-        token (str | None): The new refresh token.
-        db (Session): The database session.
+        user (User): The user object.\n
+        token (str | None): The new refresh token.\n
+        db (Session): The database session.\n
 
     Returns:
         None
@@ -67,8 +67,8 @@ async def confirmed_email(email: str, db: Session) -> None:
     Confirms the email of a user.
 
     Args:
-        email (str): The email of the user.
-        db (Session): The database session.
+        email (str): The email of the user.\n
+        db (Session): The database session.\n
 
     Returns:
         None
@@ -84,9 +84,9 @@ async def update_avatar(email, url: str, db: Session) -> User:
     Updates the avatar of a user.
 
     Args:
-        email: The email of the user.
-        url (str): The URL of the new avatar.
-        db (Session): The database session.
+        email: The email of the user.\n
+        url (str): The URL of the new avatar.\n
+        db (Session): The database session.\n
 
     Returns:
         User: The updated user object.
@@ -103,9 +103,9 @@ async def update_password(user: UserModel, new_hash_password: str, db: Session):
     Updates the password of a user.
 
     Args:
-        user (UserModel): The user object.
-        new_hash_password (str): The new hashed password.
-        db (Session): The database session.
+        user (UserModel): The user object.\n
+        new_hash_password (str): The new hashed password.\n
+        db (Session): The database session.\n
 
     Returns:
         User: The updated user object.

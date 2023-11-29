@@ -30,8 +30,8 @@ class Auth:
         Verify if the plain password matches the hashed password.
 
         Args:
-            plain_password (str): The plain password to verify.
-            hashed_password (str): The hashed password to compare against.
+            plain_password (str): The plain password to verify.\n
+            hashed_password (str): The hashed password to compare against.\n
 
         Returns:
             bool: True if the passwords match, False otherwise.
@@ -57,8 +57,8 @@ class Auth:
         Create an access token.
 
         Args:
-            data (dict): The data to encode in the token.
-            expires_delta (float, optional): The expiration time in seconds. Defaults to None.
+            data (dict): The data to encode in the token.\n
+            expires_delta (float, optional): The expiration time in seconds. Defaults to None.\n
 
         Returns:
             str: The encoded access token.
@@ -83,8 +83,8 @@ class Auth:
         Create a refresh token.
 
         Args:
-            data (dict): The data to encode in the token.
-            expires_delta (float, optional): The expiration time in seconds. Defaults to None.
+            data (dict): The data to encode in the token.\n
+            expires_delta (float, optional): The expiration time in seconds. Defaults to None.\n
 
         Returns:
             str: The encoded refresh token.
@@ -139,8 +139,8 @@ class Auth:
         Get the current user based on the access token.
 
         Args:
-            token (str, optional): The access token. Defaults to Depends(oauth2_scheme).
-            db (Session, optional): The database session. Defaults to Depends(get_db).
+            token (str, optional): The access token. Defaults to Depends(oauth2_scheme).\n
+            db (Session, optional): The database session. Defaults to Depends(get_db).\n
 
         Returns:
             User: The current user.

@@ -18,7 +18,7 @@ router = APIRouter(prefix="/contacts", tags=["contacts"])
 async def read_contacts(
     request: Request,
     offset: int = 0,
-    limit: int = 100,
+    limit: int = 10,
     db: Session = Depends(get_db),
     current_user: User = Depends(auth_service.get_current_user),
 ):
@@ -26,11 +26,11 @@ async def read_contacts(
     Get a list of contacts.
 
     Args:
-        request (Request): The incoming request.
-        offset (int, optional): The offset for pagination. Defaults to 0.
-        limit (int, optional): The maximum number of contacts to retrieve. Defaults to 100.
-        db (Session, optional): The database session. Defaults to Depends(get_db).
-        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
+        request (Request): The incoming request.\n
+        offset (int, optional): The offset for pagination. Defaults to 0.\n
+        limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.\n
+        db (Session, optional): The database session. Defaults to Depends(get_db).\n
+        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).\n
 
     Returns:
         List[ContactResponse]: A list of contacts.
@@ -53,12 +53,12 @@ async def search_contacts(
     Search for contacts based on a query.
 
     Args:
-        request (Request): The incoming request.
-        query (str): The search query.
-        offset (int, optional): The offset for pagination. Defaults to 0.
-        limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.
-        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-        db (Session, optional): The database session. Defaults to Depends(get_db).
+        request (Request): The incoming request.\n
+        query (str): The search query.\n
+        offset (int, optional): The offset for pagination. Defaults to 0.\n
+        limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.\n
+        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).\n
+        db (Session, optional): The database session. Defaults to Depends(get_db).\n
 
     Returns:
         List[ContactResponse]: A list of contacts matching the search query.
@@ -82,11 +82,11 @@ async def find_birthdays(
     Get a list of contacts with upcoming birthdays.
 
     Args:
-        request (Request): The incoming request.
-        offset (int, optional): The offset for pagination. Defaults to 0.
-        limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.
-        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-        db (Session, optional): The database session. Defaults to Depends(get_db).
+        request (Request): The incoming request.\n
+        offset (int, optional): The offset for pagination. Defaults to 0.\n
+        limit (int, optional): The maximum number of contacts to retrieve. Defaults to 10.\n
+        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).\n
+        db (Session, optional): The database session. Defaults to Depends(get_db).\n
 
     Returns:
         List[ContactResponse]: A list of contacts with upcoming birthdays.
@@ -109,10 +109,10 @@ async def read_contact(
     Get a contact by ID.
 
     Args:
-        request (Request): The incoming request.
-        contact_id (int): The ID of the contact.
-        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-        db (Session, optional): The database session. Defaults to Depends(get_db).
+        request (Request): The incoming request.\n
+        contact_id (int): The ID of the contact.\n
+        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).\n
+        db (Session, optional): The database session. Defaults to Depends(get_db).\n
 
     Returns:
         ContactResponse: The contact with the specified ID.
@@ -140,10 +140,10 @@ async def create_contact(
     Create a new contact.
 
     Args:
-        request (Request): The incoming request.
-        body (ContactRequest): The contact data.
-        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-        db (Session, optional): The database session. Defaults to Depends(get_db).
+        request (Request): The incoming request.\n
+        body (ContactRequest): The contact data.\n
+        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).\n
+        db (Session, optional): The database session. Defaults to Depends(get_db).\n
 
     Returns:
         ContactResponse: The created contact.
@@ -164,11 +164,11 @@ async def update_contact(
     Update an existing contact.
 
     Args:
-        request (Request): The incoming request.
-        body (ContactRequest): The updated contact data.
-        contact_id (int): The ID of the contact to update.
-        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-        db (Session, optional): The database session. Defaults to Depends(get_db).
+        request (Request): The incoming request.\n
+        body (ContactRequest): The updated contact data.\n
+        contact_id (int): The ID of the contact to update.\n
+        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).\n
+        db (Session, optional): The database session. Defaults to Depends(get_db).\n
 
     Returns:
         ContactResponse: The updated contact.
@@ -198,10 +198,10 @@ async def remove_contact(
     Remove a contact.
 
     Args:
-        request (Request): The incoming request.
-        contact_id (int): The ID of the contact to remove.
-        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).
-        db (Session, optional): The database session. Defaults to Depends(get_db).
+        request (Request): The incoming request.\n
+        contact_id (int): The ID of the contact to remove.\n
+        current_user (User, optional): The current authenticated user. Defaults to Depends(auth_service.get_current_user).\n
+        db (Session, optional): The database session. Defaults to Depends(get_db).\n
 
     Returns:
         ContactResponse: The removed contact.

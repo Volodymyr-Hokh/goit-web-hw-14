@@ -28,9 +28,9 @@ async def send_email(email: EmailStr, username: str, host: str):
     Sends an email to the specified recipient with a confirmation link.
 
     Args:
-        email (EmailStr): The email address of the recipient.
-        username (str): The username of the recipient.
-        host (str): The host URL where the confirmation link will be directed.
+        email (EmailStr): The email address of the recipient.\n
+        username (str): The username of the recipient.\n
+        host (str): The host URL where the confirmation link will be directed.\n
 
     Raises:
         ConnectionErrors: If there is an error connecting to the email server.
