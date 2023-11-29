@@ -11,7 +11,7 @@ async def get_user_by_email(email: str, db: Session) -> User:
 
     Args:
         email (str): The email of the user.\n
-        db (Session): The database session.\n\n
+        db (Session): The database session.\n
 
     Returns:
         User: The user object.
